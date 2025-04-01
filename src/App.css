@@ -1,0 +1,30 @@
+
+.b-link{
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 8px 0 0;
+    border-radius: 5px;
+    background: rgb(230, 38, 38);
+    
+    color: #fff;
+    font-size: 15px;
+    line-height: 16px;
+    -webkit-transition: background 500ms linear;
+    -moz-transition: background 500ms linear;
+    -o-transition: background 500ms linear;
+    -ms-transition: background 500ms linear;
+    transition: background 500ms linear;
+}
+.b-link:hover{
+    background:rgb(184, 8, 8);
+}
+
+.swiper-button-next, .swiper-button-prev {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+  }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size:20px;
+    font-weight: bold;
+}
