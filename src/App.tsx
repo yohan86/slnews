@@ -1,16 +1,23 @@
-import { useState } from 'react';
-import PostList from './components/PostList';
-import CategorySlider from './components/CategorySlider';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NewsDetails from "./pages/NewsDetails";
+import Home from "./pages/Home";
 
 function App() {
 
   return (
-    <>
-      <h1 className='bg-red-600 text-center'>Vite+React+Tailwindcss</h1>
-      <CategorySlider category='4z0e0xwcLp8C3QGc7vrtAI' />
-      <PostList />
-    </>
+    <Router>
+      <Header />
+      <h1 className='bg-red-500 text-center text-white'>We Report, You Decide</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/news/:slugOrId" element={<NewsDetails />} />
+      </Routes>
+     
+      
+    </Router>
   )
 };
 

@@ -34,7 +34,7 @@ const CategorySlider = ({category}) => {
                         spaceBetween: 2,
                     },
                     1024:{
-                        slidesPerView:2,
+                        slidesPerView:3,
                         spaceBetween: 2,
                     },
                 }}
@@ -53,7 +53,7 @@ const CategorySlider = ({category}) => {
                                 backgroundSize:"cover",
                                 backgroundPosition: "center",
                             }}>
-                            <div className="slider-content w-full absolute bottom-0 bg-black/50 text-white p-3">
+                            <div className="slider-content w-full absolute bottom-0 bg-black/75 text-white p-5 md:p-3">
                                 <h3>{post.fields.title}</h3>
                                 <a className="b-link" href="/">Read More</a>
                             </div>

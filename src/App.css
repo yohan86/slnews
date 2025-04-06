@@ -1,3 +1,27 @@
+html {
+    font-size: 14px; /* Base font size */
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;overflow-y:auto;
+  }
+
+h1{
+    font-size:18px;
+}
+h2{
+    font-size:17px;
+}
+h3{
+    font-size:16px;
+}
+h4{
+    font-size:15px; 
+}
+h1,h2,h3,h4,h5{
+    font-weight:600;
+}
 
 .b-link{
     display: inline-block;
@@ -22,9 +46,38 @@
 .swiper-button-next, .swiper-button-prev {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 10px;
-  }
-  .swiper-button-next:after, .swiper-button-prev:after {
-    font-size:20px;
-    font-weight: bold;
+    padding: 5px;
+}
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size:15px;
+        font-weight: bold;
+    }
+
+@media only screen and (min-width: 768px) {
+    .swiper-button-next, .swiper-button-prev {
+        padding: 10px;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size:20px;
+    }
+}
+
+  
+@media (min-width: 768px) {
+    html {
+      font-size: 15px; /* Font size for medium screens */
+    }
+}
+  
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px; /* Font size for large screens */
+    }
+    h1{
+        font-size:25px;
+    }
+}
+
+@media (min-width: 1280px) {
+
 }
