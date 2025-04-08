@@ -17,14 +17,14 @@ const CategorySlider = ({category}) => {
         if(category){
             fetchposts();
         }
-        console.log(posts.length);
+
 
     }, [category]);
 
 
     return (
 
-        <div className="slider-wrapper w-full lg:max-w-[1600px] max-auto h-[230px] md:h-[420px]">
+        <div className="slider-wrapper w-full lg:max-w-[1600px] max-auto h-[230px] md:h-[420px] mb-[15px]">
             <Swiper
                 className="h-full"
                 slidesPerView={1}

@@ -1,31 +1,29 @@
 import React, {useEffect, useState } from 'react';
-import client from '../services/contentful';
+import {getPostByCategory} from '../services/contentful';
 import PostCard from './PostCard';
 
-const PostList = ()=> {
+const PostList = ({category}) => {
     const [posts, setPost] = useState([]);
     const [loading, setLoading] = useState([]);
 
     useEffect(() => {
-        client
-            .getEntries({
-                content_type:'newsArticles'
-            })
-            .then((response) => {
-                setPost(response.items);
-            })
-            .catch((error) => {
-                console.error('Error from contentful', error);
-            });
+        const fetchposts = async () => {
+            const fetchedposts = await getPostByCategory(category);
+            setPost(fetchedposts);
+        };
+        if(category){
+            fetchposts();
+            setLoading(false);
+        }
 
-    },[]);
-    console.log(posts);
+    }, [category]);
 
     return (
         <>
-            <h2>Posts</h2>
+            {!loading && (
             <div className="post-wrapper flex justify-center md:justify-between">
                 <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-3 md:gap-2'>
+                    <h2 className="section-title col-span-1 md:col-span-3 xl:col-span-4"><span>Latest News</span></h2>
                     {posts.map((post) => (
                         <PostCard key={post.sys.id} post={post} />
                     ))}
@@ -35,6 +33,7 @@ const PostList = ()=> {
 
                 </div>
             </div>
+            )}
         </>
     )
 

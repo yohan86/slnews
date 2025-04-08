@@ -7,7 +7,19 @@ const client = createClient({
     accessToken: 'EKlOGMteSRm_XfmOLRbKnkGLxhzo0Cz3_cKTONkSV30',
 
 });
+export const getAllPosts = async () => {
+  try{
+      const entries = await client.getEntries({
+          content_type :'newsArticles',
+      });
+      return entries.items;
 
+  }catch(error){
+      console.error("Error fetching posts by categories", error);
+      return [];
+  }
+
+};
 export const getPostByCategory = async (category) => {
     try{
         const entries = await client.getEntries({
@@ -22,6 +34,7 @@ export const getPostByCategory = async (category) => {
     }
 
 };
+
 export const getPostBySlugOrId = async (slugOrId) => {
   console.log('para2', slugOrId)
   try{

@@ -11,7 +11,7 @@ h1{
     font-size:18px;
 }
 h2{
-    font-size:17px;
+    font-size:20px;
 }
 h3{
     font-size:16px;
@@ -52,6 +52,39 @@ h1,h2,h3,h4,h5{
         font-size:15px;
         font-weight: bold;
     }
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 50px solid #ec4040;
+}
+.section-title{
+    color:#fff;
+    text-transform:uppercase;
+    margin:10px 0 30px;
+    border-bottom:2px solid #951717;
+}
+.section-title span{
+    background: #ec4040;
+    padding: 2px 45px 2px 20px;
+    position: relative;
+    border-bottom: 3px solid #f8c00b;
+    margin-bottom: -2px;
+    display: inline-block;
+}
+.section-title span:after{
+    content: "";
+    width: 0;
+    height: 0;
+    display: block;
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 18px solid #f8c00b;
+}
 
 @media only screen and (min-width: 768px) {
     .swiper-button-next, .swiper-button-prev {
