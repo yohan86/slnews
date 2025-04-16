@@ -25,7 +25,7 @@ const PostCard = ({post}) => {
       )}
       <div className="item-intro-wrapper p-2 pt-0 md:pt-2">
         <a href={`/news/${slugOrId}`} title="Read More">
-          <h3 className="!text-[13px] md:!text-[14px] text-gray-900">{post.fields.title}</h3>
+          <h3 className="!text-[13px] lg:!text-[14px] text-gray-900">{post.fields.title}</h3>
           <span className="link-text text-red-500 mb-[10px]">Read more &gt;&gt;</span></a>
         <div className="text-xs font-semibold">{formattedDate} | &nbsp;{timeAgo}</div>
       </div>

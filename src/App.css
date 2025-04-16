@@ -2,7 +2,7 @@ html {
     font-size: 14px; /* Base font size */
 }
 html, body {
-    height: 100%;
+
     margin: 0;
     padding: 0;overflow-y:auto;
   }
@@ -63,29 +63,43 @@ h1,h2,h3,h4,h5{
     color:#fff;
     text-transform:uppercase;
     margin:10px 0 30px;
-    border-bottom:2px solid #951717;
+    border-bottom:2px solid #c9b4b7;
 }
-.section-title span{
-    background: #ec4040;
-    padding: 2px 45px 2px 20px;
-    position: relative;
-    border-bottom: 3px solid #f8c00b;
-    margin-bottom: -2px;
-    display: inline-block;
-}
-.section-title span:after{
-    content: "";
-    width: 0;
-    height: 0;
-    display: block;
-    position: absolute;
-    bottom: -18px;
-    right: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 18px solid #f8c00b;
-}
+    .section-title span{
+        background: #ec4040;
+        padding: 2px 45px 2px 20px;
+        position: relative;
+        border-bottom: 3px solid #f8c00b;
+        margin-bottom: -2px;
+        display: inline-block;
+    }
+    .section-title span:after{
+        content: "";
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        bottom: -18px;
+        right: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 18px solid #f8c00b;
+    }
 
+    .section-title.sports span{
+        background:#05856f;
+    }
+    .section-title.events span{
+        background:#7c75ca;
+    }
+
+
+.category-wrapper.fixed{
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+}
 @media only screen and (min-width: 768px) {
     .swiper-button-next, .swiper-button-prev {
         padding: 10px;
