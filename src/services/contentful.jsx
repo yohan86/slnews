@@ -40,7 +40,7 @@ export const getPostBySlugOrId = async (slugOrId) => {
   try{
       const slugResponse = await client.getEntries({
         content_type :'newsArticles',
-        'fields.slug': slugOrIds,
+        'fields.slug': slugOrId,
       });
       console.log("Post data fetched by slug:", slugResponse);
 

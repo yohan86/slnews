@@ -4,6 +4,7 @@ import PostCard from "./PostCard";
 import backToTopIcon from "../assets/back-to-top.png";
 import CategoryNav from "./CategoryNav";
 import GridPostsList from "./GridPostsList";
+import TwocolsPostsImages from "./TwocolsPostsImges";
 
 const PostsByCategoryList = () => {
    const [posts, setPosts] = useState([]);
@@ -16,10 +17,11 @@ const PostsByCategoryList = () => {
    const [activeCat, setActiveCat] = useState(null);
 
    const categoryConfig =[
-    {slug:"latestnews", name:"Latest News", component:"PostList", layout:"PostCard"},
-    {slug:"sports", name:"Sports", component:"PostList", layout:"grid"},
-    {slug:"events", name:"Events", component:"PostList", layout:"grid"},
-    {slug:"world", name:"World News", component:"PostList", layout:"grid"},
+    {slug:"latestnews", name:"Latest News", allowMenu:true, component:"PostList", layout:"PostCard"},
+    {slug:"sports", name:"Sports", allowMenu:true, component:"PostList", layout:"grid"},
+    {slug:"events", name:"Events", allowMenu:true, component:"PostList", layout:"grid"},
+    {slug:"world", name:"World News", allowMenu:true, component:"PostList", layout:"grid"},
+    {slug:"twocolimages", name:"two columns with images ", allowMenu:false, component:"PostList", layout:"grid"},
   ];
  
 
@@ -31,22 +33,18 @@ const PostsByCategoryList = () => {
                 console.log(getPosts)
                 const groupPosts = getPosts.reduce((acc, post) => {
                     const postCategories = post.fields.category;
-                   
 
                     if(postCategories?.length){
-                  
                         postCategories.forEach((postCategory) => {
                             if(postCategory.fields.slug !=="home_slider"){
                                 const catSlug = postCategory.fields.slug;
                                 const catName = postCategory.fields.categoryName;
-                                
                                 if(!acc[catSlug]){
                                     acc[catSlug] = {name:catName, posts:[]};
                                 }
                                 acc[catSlug].posts.push(post);
                             }
                         });
-                       
                         
                     }
                       return acc; 
@@ -55,20 +53,14 @@ const PostsByCategoryList = () => {
                 setPosts(groupPosts);
                 console.log("Category refs", categoryRefs.current);
                 
-                
             }catch(error){
                 console.log("error from posts by categories", error);
             }
-            
         }
 
         fetchPosts();
 
     }, []);
-
-
-
-
 
     useEffect(() => {
 
@@ -79,63 +71,43 @@ const PostsByCategoryList = () => {
      
            if(scrollp.current) {
 
-            if(scrollPosition >= categoryInitialTop.current){
-                setCatWrapperClass("fixed");
-                console.log(1)
-            }else{
-                setCatWrapperClass("relative");
-                console.log(2)
-            }
+                if(scrollPosition >= categoryInitialTop.current){
+                    setCatWrapperClass("fixed");
+                    console.log(1)
+                }else{
+                    setCatWrapperClass("relative");
+                    console.log(2)
+                }
 
-            for(const slug of Object.keys(categoryRefs.current)){
-                const ref = categoryRefs.current[slug];
-                if(ref){
-                    
+                for(const slug of Object.keys(categoryRefs.current)){
+                    const ref = categoryRefs.current[slug];
+                    if(ref){
                         const sectionTop = ref.offsetTop;
                         const sectionBottom = sectionTop + ref.offsetHeight;
                         if(scrollPosition >= sectionTop && scrollPosition < sectionBottom){
-                            
-                                setActiveCat(slug);
-                           
-                            
+                            setActiveCat(slug);
                         }
-                   
-                    
+                    }
                 }
-            }
-        } 
+            } 
         }
         const hanldeResize = () => {
             categoryInitialTop.current = categoryWrapperRefs.current?.offsetTop || 0;
         };
-  
-                window.addEventListener("scroll", handleScrollEvent);
-                window.addEventListener("resize", hanldeResize);
-                return () => {
-                    window.removeEventListener("scroll", handleScrollEvent);
-                    window.removeEventListener("resize", hanldeResize );
-                };
-            
-
-       
-      
-       
+        window.addEventListener("scroll", handleScrollEvent);
+        window.addEventListener("resize", hanldeResize);
+        return () => {
+            window.removeEventListener("scroll", handleScrollEvent);
+            window.removeEventListener("resize", hanldeResize );
+        };
     
     }, []);
 
-
-
-
-
     const handleCategoryClick = (categoryslug) => {
         setActiveCat(categoryslug);
-       scrollp.current = false;
-        
-
- 
+        scrollp.current = false;
         const categorySection = categoryRefs.current[categoryslug];
         if(categorySection) {
-           
             const yoffset = -50;
             const ytop = categorySection.getBoundingClientRect().top + window.scrollY + yoffset;
             requestAnimationFrame(()=>{
@@ -146,17 +118,13 @@ const PostsByCategoryList = () => {
             setTimeout(() => {
                 scrollp.current = true;
             }, 600);
-           
 
         }else {
             console.warn("No ref found for:", categoryslug);
-          }
+        }
     }
-
-
-
-    const availableCategories = categoryConfig.filter( (cat) => posts[cat.slug]?.posts?.length > 0 );
-
+    
+    const availableCategories = categoryConfig.filter( (cat) => cat.allowMenu && posts[cat.slug]?.posts?.length > 0 );
     return (
         <>
            <CategoryNav
@@ -175,21 +143,27 @@ const PostsByCategoryList = () => {
                         posts={posts["latestnews"]?.posts}
                     />
                     <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
+                    <TwocolsPostsImages
+                        categoryRefs={categoryRefs} 
+                        categoryName="Two Columns" 
+                        category="twocolimages" 
+                        posts={posts["twocolimages"]?.posts}
+                    />
+                    <GridPostsList  
+                        categoryRefs={categoryRefs} 
+                        categoryName="Sports" 
+                        category="sports" 
+                        posts={posts["sports"]?.posts} 
+                    />
+                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
+                    <GridPostsList  
+                        categoryRefs={categoryRefs} 
+                        categoryName="Events" 
+                        category="events" 
+                        posts={posts["events"]?.posts} 
+                    />
+                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
 
-                    <GridPostsList  
-                        categoryRefs={categoryRefs} 
-                        categoryName="Sports" 
-                        category="sports" 
-                        posts={posts["sports"]?.posts} 
-                    />
-                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
-                    <GridPostsList  
-                        categoryRefs={categoryRefs} 
-                        categoryName="Sports" 
-                        category="sports" 
-                        posts={posts["sports"]?.posts} 
-                    />
-                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
 
                 </div>
                 <div className="sidebar w-[150px] lg:w-[220px] min-w-[150px] xl:min-w-[220px] bg-green-200 hidden mt-5 md:block">
