@@ -1,19 +1,24 @@
-import React, { useState, useEffect }from "react";
+import { useState, useEffect }from "react";
 import { useParams } from "react-router-dom";
 import { getPostBySlugOrId } from "../services/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
+import { NewsArticlesSkeleton } from "../types/contentful";
+import { Entry } from "contentful";
 
+type Post = Entry<NewsArticlesSkeleton>;
 const NewsDetails = () => {
-    const {slugOrId} = useParams();
-    const [post, setPost] = useState(null);
+    const { slugOrId } = useParams<{ slugOrId: string }>();
+    const [post, setPost] = useState<Post | null>(null);
+    const fields = post?.fields as NewsArticlesSkeleton["fields"];
 console.log('para', slugOrId)
     useEffect(() => {
+      if(!slugOrId) return;
 
     const fetchPost = async () => {
       try{
-        let postData = await getPostBySlugOrId(slugOrId);
-        console.log(slugOrId)
+        let postData = await getPostBySlugOrId(slugOrId!);
+        console.log("post data", postData);
         if(postData){
           setPost(postData);
           console.log("dd", slugOrId);
@@ -32,7 +37,7 @@ console.log('para', slugOrId)
 
 const option = {
   renderNode : {
-    [BLOCKS.EMBEDDED_ENTRY] : (node) => {
+    [BLOCKS.EMBEDDED_ENTRY] : (node: any) => {
       const videoID = node.data.target.fields?.videoUrl;
       if(!videoID) return null;
 
@@ -57,19 +62,19 @@ const option = {
   return (
     <div className="news-details-wrapper block md:flex  md:justify-between w-[95%] lg:w-[986px] xl:w-[1200px] m-auto mt-[25px] lg:mt-[50px] md:gap-5">
       <div className="news-details w-[95%] md:w-[560px] lg:w-[780px] xl:w-[950px] m-auto">
-        {post && post.fields?.title && (
-          <h1 className="item-title mb-[20px]">{post.fields?.title}</h1>
+        {fields?.title && (
+          <h1 className="item-title mb-[20px]">{fields?.title}</h1>
         
         )}
-        {post && post.fields && (
+        {fields?.postImage?.[0]?.fields?.file?.url && (
           <div className="item-image-wrapper">
             <img 
-            src={post.fields?.postImage?.[0]?.fields?.file?.url} 
-            alt="" 
+            src={fields?.postImage?.[0]?.fields?.file?.url || "no image"} 
+            alt={fields?.postImage?.[0]?.fields?.file?.title || "News Image"}
             className="item-image w-[100%] h-[auto] md:w-[700px]"
             />
             <div className="item-description mt-10 mb-10"> 
-              {documentToReactComponents(post.fields?.description, option)}
+              {documentToReactComponents(fields?.description, option)}
             </div>
 
           </div>

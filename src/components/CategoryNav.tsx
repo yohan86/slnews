@@ -1,16 +1,19 @@
-import React from "react";
 
-const CategoryNav = (({
-    categories,
-    activeCat,
-    handleCategoryClick,
-    categoryWrapperRefs,
-    catWrapperClass,
-}) => {
+interface props{
+    categories:{slug:string, name:string}[];
+    activeCat: string | null;
+    handleCategoryClick: (slug:string) => void;
+    categoryWrapperRefs: React.MutableRefObject<HTMLElement | null>;
+    catWrapperClass: string | null;
+}
+
+const CategoryNav = ((props:props) => {
+
+    const {categories, activeCat, handleCategoryClick, categoryWrapperRefs, catWrapperClass } = props;
 
     return (
         <>
-            <ul ref={categoryWrapperRefs} className={`category-wrapper ${
+            <ul ref={(el) => {categoryWrapperRefs.current= el}} className={`category-wrapper ${
                 catWrapperClass === "fixed"
                 ? "fixed shadow-md transition-all duration-300 ease-in-out" 
                 : "relative transition-all duration-300 ease-in-out"

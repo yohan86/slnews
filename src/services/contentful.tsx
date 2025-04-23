@@ -50,6 +50,7 @@ export const getPostBySlugOrId = async (slugOrId:string):Promise<Entry<NewsArtic
         return slugResponse.items[0];
       }else{
         const idResponse = await client.getEntry<NewsArticlesSkeleton>(slugOrId);
+        console.log("id", idResponse);
         return idResponse;
       }
 

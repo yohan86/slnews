@@ -5,15 +5,15 @@ import { Entry } from "contentful";
 import { CategorySkeleton, NewsArticlesSkeleton } from "../types/contentful";
 
 interface props{
-    categoryRefs: React.MutableRefObject<Record<string, HTMLElement | null>>;
-    categoryName: string;
+    //categoryRefs: React.MutableRefObject<Record<string, HTMLElement | null>>;
+    //categoryName: string;
     category: string;
     posts: Entry<NewsArticlesSkeleton>[];
 }
 
 const TwocolsPostsImages = ((props:props) => {
 
-    const {categoryRefs, categoryName, category, posts} = props;
+    const {category, posts} = props;
 
 return (
     
@@ -23,7 +23,7 @@ return (
                 className={`section-title col-span-1 md:col-span-3 xl:col-span-4 ${category}`}>
                 
             </h2>
-            {Array.isArray(posts) && posts.map((post:Entry<NewsArticlesSkeleton>, index:number) => {
+            {Array.isArray(posts) && posts.map((post:Entry<NewsArticlesSkeleton>) => {
                 const fields = post.fields as NewsArticlesSkeleton["fields"];
                 let postDate = fields.date? new Date(fields.date): new Date();
               

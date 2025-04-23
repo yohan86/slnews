@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getPostByCategory } from '../services/contentful';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore  from 'swiper/core';
 import { Autoplay, Navigation } from 'swiper/modules';
+import {Entry} from "contentful";
+import { NewsArticlesSkeleton } from '../types/contentful';
 
 SwiperCore.use([Autoplay, Navigation]); // Register the required modules
-
-const CategorySlider = ({category}) => {
-    const [posts, setPosts] = useState([]);
+type posts = Entry<NewsArticlesSkeleton>;
+interface props{
+    category: string;
+}
+const CategorySlider = (props:props) => {
+    const { category } = props;
+    const [posts, setPosts] = useState<posts[]>([]);
 
     useEffect(() => {
         const fetchposts = async () => {
@@ -18,12 +24,10 @@ const CategorySlider = ({category}) => {
             fetchposts();
         }
 
-
     }, [category]);
 
 
     return (
-
         <div className="slider-wrapper w-full lg:max-w-[1600px] max-auto h-[230px] md:h-[420px] mb-[15px]">
             <Swiper
                 className="h-full"
@@ -46,20 +50,23 @@ const CategorySlider = ({category}) => {
                 }}
             >
             
-                {posts.map((post)=>(
+                {posts.map((post) => {
+                    const fields = post.fields as NewsArticlesSkeleton["fields"];
+                    return (
                     <SwiperSlide>
                         <div className="slider relative w-full h-full border-b-5 border-red-500" style={{
-                                backgroundImage:`url(${post.fields.postImage?.[0]?.fields?.file?.url})`,
+                                backgroundImage:`url(${fields.postImage?.[0]?.fields?.file?.url})`,
                                 backgroundSize:"cover",
                                 backgroundPosition: "center",
                             }}>
                             <div className="slider-content w-full absolute bottom-0 bg-black/75 text-white p-5 md:p-3">
-                                <h3>{post.fields.title}</h3>
+                                <h3>{fields.title}</h3>
                                 <a className="b-link" href="/">Read More</a>
                             </div>
                         </div>
                     </SwiperSlide>
-                ))}
+                    );
+                })};
             </Swiper>
         </div>
 

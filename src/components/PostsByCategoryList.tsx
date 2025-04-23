@@ -146,8 +146,8 @@ const PostsByCategoryList = () => {
                     />
                     <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
                     <TwocolsPostsImages
-                        categoryRefs={categoryRefs} 
-                        categoryName="Two Columns" 
+                       // categoryRefs={categoryRefs} 
+                       // categoryName="Two Columns" 
                         category="twocolimages" 
                         posts={posts["twocolimages"]?.posts}
                     />

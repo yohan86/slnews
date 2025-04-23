@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import CategorySlider from "../components/CategorySlider";
 import PostsByCategoryList from "../components/PostsByCategoryList";
 
