@@ -1,20 +1,22 @@
-import React, {useEffect, useState, useRef} from "react";
+import {useEffect, useState, useRef} from "react";
 import {getAllPosts} from "../services/contentful";
-import PostCard from "./PostCard";
 import backToTopIcon from "../assets/back-to-top.png";
 import CategoryNav from "./CategoryNav";
 import GridPostsList from "./GridPostsList";
 import TwocolsPostsImages from "./TwocolsPostsImges";
+import { Entry } from "contentful";
+import { NewsArticlesSkeleton } from "../types/contentful";
+
+type Post = Entry<NewsArticlesSkeleton>; 
 
 const PostsByCategoryList = () => {
-   const [posts, setPosts] = useState([]);
-   const categoryRefs = useRef({});
+   const [posts, setPosts] = useState<Record<string, { name: string; posts: Post[] }>>({});
+   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
    const scrollp = useRef(true);
-   const categoryWrapperRefs = useRef();
-   const [pageScroll, setPageScroll] = useState('true');
-   const categoryInitialTop = useRef(null);
-   const [catWrapperClass, setCatWrapperClass] = useState(null);
-   const [activeCat, setActiveCat] = useState(null);
+   const categoryWrapperRefs = useRef<HTMLElement | null>(null);
+   const categoryInitialTop = useRef<number>(0);
+   const [catWrapperClass, setCatWrapperClass] = useState<string | null>(null);
+   const [activeCat, setActiveCat] = useState<string | null>(null);
 
    const categoryConfig =[
     {slug:"latestnews", name:"Latest News", allowMenu:true, component:"PostList", layout:"PostCard"},
@@ -31,10 +33,10 @@ const PostsByCategoryList = () => {
             try{
                 const getPosts = await getAllPosts();
                 console.log(getPosts)
-                const groupPosts = getPosts.reduce((acc, post) => {
+                const groupPosts = getPosts.reduce((acc: Record<string, {name: string; posts:Post[] }>, post:Post) => {
                     const postCategories = post.fields.category;
 
-                    if(postCategories?.length){
+                    if(Array.isArray(postCategories)){
                         postCategories.forEach((postCategory) => {
                             if(postCategory.fields.slug !=="home_slider"){
                                 const catSlug = postCategory.fields.slug;
@@ -103,7 +105,7 @@ const PostsByCategoryList = () => {
     
     }, []);
 
-    const handleCategoryClick = (categoryslug) => {
+    const handleCategoryClick = (categoryslug:string) => {
         setActiveCat(categoryslug);
         scrollp.current = false;
         const categorySection = categoryRefs.current[categoryslug];
