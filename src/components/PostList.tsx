@@ -1,15 +1,22 @@
-import React, {useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import {getPostByCategory} from '../services/contentful';
 import PostCard from './PostCard';
+import { NewsArticlesSkeleton } from '../types/contentful';
+import { Entry } from 'contentful';
+interface props{
+    category: string;
+}
+type posts = Entry<NewsArticlesSkeleton>[];
+const PostList = (props:props) => {
+    const {category} = props;
+    const [posts, setPosts] = useState<posts>([]);
 
-const PostList = ({category}) => {
-    const [posts, setPost] = useState([]);
-    const [loading, setLoading] = useState([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchposts = async () => {
             const fetchedposts = await getPostByCategory(category);
-            setPost(fetchedposts);
+            setPosts(fetchedposts);
         };
         if(category){
             fetchposts();
