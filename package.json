@@ -12,6 +12,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.1",
     "@tailwindcss/vite": "^4.0.17",
