@@ -4,8 +4,8 @@ import { createClient, Entry } from "contentful";
 import { NewsArticlesSkeleton } from "../types/contentful";
 
 const client = createClient({
-    space: "xwa7hnkxpqxs",
-    accessToken: "EKlOGMteSRm_XfmOLRbKnkGLxhzo0Cz3_cKTONkSV30",
+    space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+    accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
 
 });
 export const getAllPosts = async ():Promise<Entry<NewsArticlesSkeleton>[]> => {
