@@ -12,6 +12,7 @@ dist-ssr
 *.local
 
 # Ignore .env files
+dist
 .env
 .env.local
 
