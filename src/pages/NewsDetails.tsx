@@ -13,7 +13,7 @@ const NewsDetails = () => {
     const fields = post?.fields as NewsArticlesSkeleton["fields"];
 console.log('para', slugOrId)
     useEffect(() => {
-      if(!slugOrId) return;
+    if(!slugOrId) return;
 
     const fetchPost = async () => {
       try{
