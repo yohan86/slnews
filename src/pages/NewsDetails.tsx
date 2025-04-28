@@ -34,7 +34,7 @@ console.log('para', slugOrId)
 
   }, [slugOrId]);
   console.log(post);
-
+console.log("Block", BLOCKS);
 const option = {
   renderNode : {
     [BLOCKS.EMBEDDED_ENTRY] : (node: any) => {
@@ -42,7 +42,7 @@ const option = {
       if(!videoID) return null;
 
       return(
-        <div className="youtube-embed w-[100%] md:w-[560px] h-[200px] md-h-[315px]" style={{ margin: '2rem 0' }}>
+        <div className="youtube-embed w-[100%] md:w-[560px] h-[200px] md:h-[340px] mt-5 mb-5 md:mt-10 md:mb-10">
         <iframe
           width="100%"
           height="100%"
@@ -53,10 +53,23 @@ const option = {
         ></iframe>
       </div>
       )
+    },
+    [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+      const { file, title } = node.data.target.fields || {};
+      if(!file.url) return null;
+
+      return (
+        <div className="w-[300px] md:w-[600px] h-auto mt-10 mb-10">
+          <img 
+            src={file.url}
+            alt={title || "Embedded Image"}
+          />
+        </div>
+      )
     }
   }
 }
-
+console.log("op", option);
 
 
   return (
@@ -64,7 +77,7 @@ const option = {
       <div className="news-details w-[95%] md:w-[560px] lg:w-[780px] xl:w-[950px] m-auto">
         {fields?.title && (
           <h1 className="item-title mb-[20px]">{fields?.title}</h1>
-        
+          
         )}
         {fields?.postImage?.[0]?.fields?.file?.url && (
           <div className="item-image-wrapper">

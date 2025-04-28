@@ -18,8 +18,11 @@ const GridPostsList = ((props:props) => {
 
 
 return (
-    
+    <>
+        { safePosts.length > 0 && (
+        
         <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-3 md:gap-2'>
+        
             <h2 
                 ref={(el: HTMLElement | null) => {categoryRefs.current[category] = el }}
                 className={`section-title col-span-1 md:col-span-3 xl:col-span-4 ${category}`}>
@@ -59,8 +62,12 @@ return (
                 )
                
             })}
+
+            
         </div>
-  
+        )}
+    </>
+
 )
 
 

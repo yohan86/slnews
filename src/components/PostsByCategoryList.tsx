@@ -7,7 +7,7 @@ import TwocolsPostsImages from "./TwocolsPostsImges";
 import { Entry } from "contentful";
 import { NewsArticlesSkeleton } from "../types/contentful";
 
-type Post = Entry<NewsArticlesSkeleton>; 
+type Post = Entry<NewsArticlesSkeleton>;
 
 const PostsByCategoryList = () => {
    const [posts, setPosts] = useState<Record<string, { name: string; posts: Post[] }>>({});
@@ -32,7 +32,6 @@ const PostsByCategoryList = () => {
         const fetchPosts = async () => {
             try{
                 const getPosts = await getAllPosts();
-                console.log(getPosts)
                 const groupPosts = getPosts.reduce((acc: Record<string, {name: string; posts:Post[] }>, post:Post) => {
                     const postCategories = post.fields.category;
 
@@ -144,7 +143,7 @@ const PostsByCategoryList = () => {
                         category="latestnews" 
                         posts={posts["latestnews"]?.posts}
                     />
-                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
+                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
                     <TwocolsPostsImages
                        // categoryRefs={categoryRefs} 
                        // categoryName="Two Columns" 
@@ -157,14 +156,14 @@ const PostsByCategoryList = () => {
                         category="sports" 
                         posts={posts["sports"]?.posts} 
                     />
-                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
+                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
                     <GridPostsList  
                         categoryRefs={categoryRefs} 
                         categoryName="Events" 
                         category="events" 
                         posts={posts["events"]?.posts} 
                     />
-                    <div className="banner  w-full h-[100px] bg-green-200 mb-[50px]"></div>
+                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
 
 
                 </div>
