@@ -52,6 +52,7 @@ const CategorySlider = (props:props) => {
             
                 {posts.map((post) => {
                     const fields = post.fields as NewsArticlesSkeleton["fields"];
+                    const slugOrId = fields.slug && fields.slug.trim() !== " " ? fields.slug : post.sys.id;
                     return (
                     <SwiperSlide>
                         <div className="slider relative w-full h-full border-b-5 border-red-500" style={{
@@ -60,8 +61,8 @@ const CategorySlider = (props:props) => {
                                 backgroundPosition: "center",
                             }}>
                             <div className="slider-content w-full absolute bottom-0 bg-black/75 text-white p-5 md:p-3">
-                                <h3>{fields.title}</h3>
-                                <a className="b-link" href="/">Read More</a>
+                                <h3><a  href={`${import.meta.env.BASE_URL}news/${slugOrId}`}>{fields.title}</a></h3>
+                                <a className="b-link" href={`${import.meta.env.BASE_URL}news/${slugOrId}`} title="Read More">Read More</a>
                             </div>
                         </div>
                     </SwiperSlide>
