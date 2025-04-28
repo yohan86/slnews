@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 function App() {
 
   return (
-    <Router basename="/slnews">
+    <Router basename={import.meta.env.BASE_URL}>
       <Header />
       <h1 className='bg-red-500 text-center text-white'>We Report, You Decide</h1>
       <Routes>
