@@ -1,5 +1,5 @@
 html {
-    font-size: 14px; /* Base font size */
+    font-size: 13px; /* Base font size */
 }
 html, body {
 
@@ -11,13 +11,13 @@ h1{
     font-size:18px;
 }
 h2{
-    font-size:20px;
-}
-h3{
     font-size:16px;
 }
+h3{
+    font-size:13px;
+}
 h4{
-    font-size:15px; 
+    font-size:14px; 
 }
 h1,h2,h3,h4,h5{
     font-weight:600;
@@ -114,7 +114,10 @@ ul,p{
   
 @media (min-width: 768px) {
     html {
-      font-size: 15px; /* Font size for medium screens */
+      font-size: 14px; /* Font size for medium screens */
+    }
+    h3{
+        font-size:14px;
     }
 }
   

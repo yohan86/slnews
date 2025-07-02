@@ -21,11 +21,11 @@ return (
     <>
         { safePosts.length > 0 && (
         
-        <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-3 md:gap-2'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-1 gap-y-3 md:gap-2'>
         
             <h2 
                 ref={(el: HTMLElement | null) => {categoryRefs.current[category] = el }}
-                className={`section-title col-span-1 md:col-span-3 xl:col-span-4 ${category}`}>
+                className={`section-title col-span-1 md:col-span-3 lg:col-span-4 ${category}`}>
                 <span>{categoryName}</span>
             </h2>
             {safePosts.map((post) => {
@@ -39,7 +39,7 @@ return (
                 return (
                     <>
                     
-                    <div className="news-card flex md:block w-full md:w-[180px] lg:w-[225px] xl:w-[280px] mb-[10px] md:mb-[20px]">
+                    <div className="news-card flex md:block w-full md:w-[180px] lg:w-[225px] xl:w-[250px] mb-[10px] md:mb-[20px]">
                         {fields.postImage?.[0]?.fields?.file?.url && (
                         <a href={`/news/${slugOrId}`}  title="Read More">
                             <div className="w-[135px] min-w-[135px] md:w-full h-[85px] lg:h-[125px]" style={{

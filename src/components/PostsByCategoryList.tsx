@@ -67,6 +67,7 @@ const PostsByCategoryList = () => {
 
         const catTop = categoryWrapperRefs.current?.offsetTop || 0;
         categoryInitialTop.current = catTop;
+
         const handleScrollEvent = () => {
             const scrollPosition = window.scrollY + 50;
      
@@ -93,13 +94,16 @@ const PostsByCategoryList = () => {
             } 
         }
         const hanldeResize = () => {
-            categoryInitialTop.current = categoryWrapperRefs.current?.offsetTop || 0;
+            setTimeout(()=> {
+                categoryInitialTop.current = categoryWrapperRefs.current?.offsetTop || 0;
+            }, 1000);
+            
         };
         window.addEventListener("scroll", handleScrollEvent);
-        window.addEventListener("resize", hanldeResize);
+        window.addEventListener("resize", handleScrollEvent);
         return () => {
             window.removeEventListener("scroll", handleScrollEvent);
-            window.removeEventListener("resize", hanldeResize );
+            window.removeEventListener("resize", handleScrollEvent );
         };
     
     }, []);

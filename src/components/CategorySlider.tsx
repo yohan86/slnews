@@ -28,7 +28,7 @@ const CategorySlider = (props:props) => {
 
 
     return (
-        <div className="slider-wrapper w-full lg:max-w-[1600px] max-auto h-[230px] md:h-[420px] mb-[15px]">
+        <div className="slider-wrapper w-full mr-auto ml-auto lg:max-w-[1600px] h-[230px] md:h-[420px] mb-[15px]">
             <Swiper
                 className="h-full"
                 slidesPerView={1}
