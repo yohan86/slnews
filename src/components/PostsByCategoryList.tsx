@@ -4,8 +4,10 @@ import backToTopIcon from "../assets/back-to-top.png";
 import CategoryNav from "./CategoryNav";
 import GridPostsList from "./GridPostsList";
 import TwocolsPostsImages from "./TwocolsPostsImges";
+import PostsByColumn from "./PostsByColumn";
 import { Entry } from "contentful";
 import { NewsArticlesSkeleton } from "../types/contentful";
+import Weather from "./Weather";
 
 type Post = Entry<NewsArticlesSkeleton>;
 
@@ -24,6 +26,7 @@ const PostsByCategoryList = () => {
     {slug:"events", name:"Events", allowMenu:true, component:"PostList", layout:"grid"},
     {slug:"world", name:"World News", allowMenu:true, component:"PostList", layout:"grid"},
     {slug:"twocolimages", name:"two columns with images ", allowMenu:false, component:"PostList", layout:"grid"},
+    {slug:"featured", name:"Featured News", allowMenu:true, component:"PostList", layout:"grid"},
   ];
  
 
@@ -132,13 +135,14 @@ const PostsByCategoryList = () => {
     const availableCategories = categoryConfig.filter( (cat) => cat.allowMenu && posts[cat.slug]?.posts?.length > 0 );
     return (
         <>
-           <CategoryNav
+        <div className="main-wrapper w-[95%] md:w-[98%] lg:max-w-[1600px] m-auto p-2">
+            <CategoryNav
                 categories={availableCategories}
                 activeCat={activeCat}
                 handleCategoryClick={handleCategoryClick}
                 categoryWrapperRefs={categoryWrapperRefs}
                 catWrapperClass={catWrapperClass}
-           />
+            />
             <div className="post-wrapper flex justify-center md:justify-between gap-4">
                 <div className="grid grid-cols-1">
                     <GridPostsList  
@@ -147,19 +151,52 @@ const PostsByCategoryList = () => {
                         category="latestnews" 
                         posts={posts["latestnews"]?.posts}
                     />
+                    <div className="w-[95%] m-auto"><a href="https://www.youtube.com/@LineTvLK" target="_blank"><img src="./images/channels4_banner.jpg" /></a></div>
                     <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
                     <TwocolsPostsImages
-                       // categoryRefs={categoryRefs} 
-                       // categoryName="Two Columns" 
+                    // categoryRefs={categoryRefs} 
+                    // categoryName="Two Columns" 
                         category="twocolimages" 
                         posts={posts["twocolimages"]?.posts}
                     />
-                    <GridPostsList  
+
+                </div>
+                <div className="sidebar w-[150px] lg:w-[220px] min-w-[150px] xl:min-w-[220px]  hidden mt-10 md:block">
+                    <Weather />
+                    <div className="bg-green-200">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+            <div className="w-full  bg-[#706161] my-12">
+            <div className="flex flex-row w-full flex-wrap justify-between m-auto lg:max-w-[1600px]">
+                <div className="w-full bg-[#2c793f] p-5 md:w-1/2 lg:w-1/3">
+                    <PostsByColumn  
                         categoryRefs={categoryRefs} 
                         categoryName="Sports" 
                         category="sports" 
                         posts={posts["sports"]?.posts} 
+                        textColor="text-[#ffffff]"
+                        linkColor="text-[#fcc901]"
                     />
+
+                </div>
+                <div className="w-full p-5 md:w-1/2 lg:w-1/3 bg-[#5d2c2c]">
+                    <PostsByColumn  
+                        categoryRefs={categoryRefs} 
+                        categoryName="featured" 
+                        category="featured" 
+                        posts={posts["featured"]?.posts} 
+                        textColor="text-[#ffffff]"
+                        linkColor="text-[#fcc901]"
+                    />
+                </div>
+                <div className="w-full md:w-full lg:w-1/3 bg-[#5a7c8a]"></div>
+            </div>
+            </div>
+
+               
                     <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
                     <GridPostsList  
                         categoryRefs={categoryRefs} 
@@ -170,11 +207,6 @@ const PostsByCategoryList = () => {
                     <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
 
 
-                </div>
-                <div className="sidebar w-[150px] lg:w-[220px] min-w-[150px] xl:min-w-[220px] bg-green-200 hidden mt-5 md:block">
-                </div>
-                  
-            </div>
             <button 
                 onClick={() => {
                     window.scrollTo({

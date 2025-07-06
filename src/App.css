@@ -102,6 +102,18 @@ ul,p{
     width:100%;
     z-index:10;
 }
+
+.weather-blk{
+    padding:15px 20px;
+    border-radius: 10px;
+    background-image:linear-gradient(354deg, #6a7282, #e4a8a8);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
 @media only screen and (min-width: 768px) {
     .swiper-button-next, .swiper-button-prev {
         padding: 10px;
