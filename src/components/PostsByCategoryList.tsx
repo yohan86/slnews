@@ -96,12 +96,12 @@ const PostsByCategoryList = () => {
                 }
             } 
         }
-        const hanldeResize = () => {
+       /* const hanldeResize = () => {
             setTimeout(()=> {
                 categoryInitialTop.current = categoryWrapperRefs.current?.offsetTop || 0;
             }, 1000);
             
-        };
+        };*/
         window.addEventListener("scroll", handleScrollEvent);
         window.addEventListener("resize", handleScrollEvent);
         return () => {

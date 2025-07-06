@@ -14,7 +14,7 @@ type WeatherData = {
 };
 
 const Weather=()=> {
-    const [city, setCity] = useState<string>('Colombo');
+    const city = 'Colombo';
     const [weather, setWeather] = useState<WeatherData | null>();
     const key ="3c1f204f0c184a418d5171333250507";
     const apiUrl = "http://api.weatherapi.com/v1/current.json?key="+key+"&q="+city;
