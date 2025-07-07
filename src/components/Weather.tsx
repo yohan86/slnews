@@ -36,8 +36,8 @@ const Weather=()=> {
     }, []);
 
   return (
-    <div className="weather-blk">
-        <h2 className="text-white py-5">WEATHER</h2>
+    <div className="weather-blk shadow-xl/30">
+        <h2 className="">WEATHER</h2>
         
             {weather ? (
                 <div className="flex flex-col text-white items-center">
