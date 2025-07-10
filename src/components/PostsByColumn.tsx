@@ -14,10 +14,7 @@ interface props{
 
 const PostsByColumn = ((props:props) => {
     const {categoryRefs, categoryName, category, posts, textColor, linkColor} = props;
-
     const safePosts = posts || [];
-    console.log("grid", safePosts);
-
 
 return (
     <>
@@ -73,7 +70,6 @@ return (
     </>
 
 )
-
 
 });
 export default PostsByColumn;

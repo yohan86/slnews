@@ -10,7 +10,6 @@ type posts = Entry<NewsArticlesSkeleton>[];
 const PostList = (props:props) => {
     const {category} = props;
     const [posts, setPosts] = useState<posts>([]);
-
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {

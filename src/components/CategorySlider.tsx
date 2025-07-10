@@ -50,12 +50,12 @@ const CategorySlider = (props:props) => {
                 }}
             >
             
-                {posts.map((post) => {
+                {posts.map((post, index) => {
                     const fields = post.fields as NewsArticlesSkeleton["fields"];
                     const slugOrId = fields.slug && fields.slug.trim() !== " " ? fields.slug : post.sys.id;
                     return (
                     <SwiperSlide>
-                        <div className="slider relative w-full h-full border-b-5 border-red-500" style={{
+                        <div key={index} className="slider relative w-full h-full border-b-5 border-red-500" style={{
                                 backgroundImage:`url(${fields.postImage?.[0]?.fields?.file?.url})`,
                                 backgroundSize:"cover",
                                 backgroundPosition: "center",
@@ -71,10 +71,7 @@ const CategorySlider = (props:props) => {
             </Swiper>
         </div>
 
-
     )
-
-
 
 }
 

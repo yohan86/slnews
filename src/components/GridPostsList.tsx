@@ -12,10 +12,8 @@ interface props{
 
 const GridPostsList = ((props:props) => {
     const {categoryRefs, categoryName, category, posts} = props;
-
     const safePosts = posts || [];
     console.log("grid", safePosts);
-
 
 return (
     <>
@@ -28,7 +26,7 @@ return (
                 className={`section-title col-span-1 md:col-span-3 lg:col-span-4 ${category}`}>
                 <span>{categoryName}</span>
             </h2>
-            {safePosts.map((post) => {
+            {safePosts.map((post, index) => {
                 const fields = post.fields as NewsArticlesSkeleton["fields"];
                 const postDate = fields.date ? new Date(fields.date): new Date();
                 const formattedDate = format(postDate, "MMMM dd, yyyy");
@@ -37,9 +35,7 @@ return (
             
 
                 return (
-                    <>
-                    
-                    <div className="news-card flex md:block w-full md:w-[180px] lg:w-[225px] xl:w-[250px] mb-[10px] md:mb-[20px]">
+                    <div key={index} className="news-card flex md:block w-full md:w-[180px] lg:w-[225px] xl:w-[250px] mb-[10px] md:mb-[20px]">
                         {fields.postImage?.[0]?.fields?.file?.url && (
                         <a href={`/news/${slugOrId}`}  title="Read More">
                             <div className="w-[135px] min-w-[135px] md:w-full h-[85px] lg:h-[125px]" style={{
@@ -58,7 +54,6 @@ return (
                         </div>
                             
                     </div>
-                    </>
 
                 )
                

@@ -13,7 +13,7 @@ const CategoryNav = ((props:props) => {
 
     return (
         <>
-            <ul ref={(el) => {categoryWrapperRefs.current= el}} className={`category-wrapper ${
+            <ul ref={(el) => {categoryWrapperRefs.current= el}} className={`category-wrapper hidden md:block ${
                 catWrapperClass === "fixed"
                 ? "fixed shadow-md transition-all duration-300 ease-in-out" 
                 : "relative transition-all duration-300 ease-in-out"

@@ -11,8 +11,6 @@ const PostCard = ({post}:props) => {
   
   const fields = post.fields as NewsArticlesSkeleton["fields"];
 
-  console.log(post)
-
   const postDate = fields.date ? new Date(fields.date): new Date();
   const formattedDate = format(postDate, "MMMM dd, yyyy");
   const timeAgo = formatDistanceToNow(postDate, { addSuffix:true});

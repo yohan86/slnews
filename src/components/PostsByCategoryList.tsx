@@ -8,6 +8,7 @@ import PostsByColumn from "./PostsByColumn";
 import { Entry } from "contentful";
 import { NewsArticlesSkeleton } from "../types/contentful";
 import Weather from "./Weather";
+import WorldNews from "./WorldNews";
 
 type Post = Entry<NewsArticlesSkeleton>;
 
@@ -55,8 +56,7 @@ const PostsByCategoryList = () => {
                 }, {});
 
                 setPosts(groupPosts);
-                console.log("Category refs", categoryRefs.current);
-                
+               
             }catch(error){
                 console.log("error from posts by categories", error);
             }
@@ -78,10 +78,8 @@ const PostsByCategoryList = () => {
 
                 if(scrollPosition >= categoryInitialTop.current){
                     setCatWrapperClass("fixed");
-                    console.log(1)
                 }else{
                     setCatWrapperClass("relative");
-                    console.log(2)
                 }
 
                 for(const slug of Object.keys(categoryRefs.current)){
@@ -192,7 +190,9 @@ const PostsByCategoryList = () => {
                         linkColor="text-[#fcc901]"
                     />
                 </div>
-                <div className="w-full md:w-full lg:w-1/3 bg-[#5a7c8a]"></div>
+                <div className="w-full p-5 md:w-full lg:w-1/3 bg-[#5a7c8a]">
+                    <WorldNews />
+                </div>
             </div>
             </div>
 

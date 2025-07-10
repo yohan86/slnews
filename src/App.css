@@ -94,6 +94,9 @@ ul,p{
     .section-title.events span{
         background:#7c75ca;
     }
+    .section-title.magento span{
+        background:#75358c;
+    }
 
 
 .category-wrapper.fixed{
@@ -144,8 +147,20 @@ ul,p{
       opacity: 1;
     }
   }
-
-
+.worldnews-wrapper .swiper-button-next,
+.worldnews-wrapper .swiper-button-prev{
+    top:auto;
+    bottom:0;
+    right:auto;
+    left:0;
+    width:20px;
+    height:32px;
+    background:#ebacac;
+    color:#f8f0f0;
+}
+.worldnews-wrapper .swiper-button-next{
+    left:25px;
+}
 @media only screen and (min-width: 768px) {
     .swiper-button-next, .swiper-button-prev {
         padding: 10px;
@@ -171,6 +186,9 @@ ul,p{
     }
     h1{
         font-size:25px;
+    }
+    h3{
+        font-size:18px;
     }
 }
 
