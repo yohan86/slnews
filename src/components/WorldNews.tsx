@@ -15,7 +15,7 @@ type WorldNews= {
 const WorldNews = ()=> {
     const [worldNews, setWorldNews] = useState<WorldNews | null>();
     const apiKey = "9108cf15ac524d778f909aadfdd3e0dd";
-    const apiUrl = `http://newsapi.org/v2/top-headlines?category=general&language=en&pageSize=6&apiKey=${apiKey}`;
+    const apiUrl = `https://newsapi.org/v2/top-headlines?category=general&language=en&pageSize=6&apiKey=${apiKey}`;
 
     const dateFormat =(date:string)=> {
         const newsDate = new Date(date);
