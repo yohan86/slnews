@@ -12,6 +12,11 @@ export default defineConfig(({mode}) => {
       tailwindcss(),
     ],
     base: env.VITE_BASE_PATH || '/',
+    server: {
+      proxy: {
+        '/api': 'http://localhost:5000',
+      },
+    },
   };
 
 })

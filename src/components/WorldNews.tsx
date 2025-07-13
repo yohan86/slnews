@@ -13,17 +13,26 @@ type WorldNews= {
     articles: Article[];
 }
 const WorldNews = ()=> {
-    const [worldNews, setWorldNews] = useState<WorldNews | null>();
-    const apiKey = "9108cf15ac524d778f909aadfdd3e0dd";
-    const apiUrl = `https://newsapi.org/v2/top-headlines?category=general&language=en&pageSize=6&apiKey=${apiKey}`;
-
+    const [worldNews, setWorldNews] = useState<WorldNews | null>(null);
     const dateFormat =(date:string)=> {
         const newsDate = new Date(date);
         const formatDate = format(newsDate, "MMMM dd, yyyy");
         return formatDate;
     };
 
-    useEffect(()=> {
+    useEffect(() => {
+        fetch('/api/worldNews')
+          .then((res) =>{
+            if(!res.ok){
+                throw new Error(`https error:${res.status}`);
+            }
+            return res.json();
+          } )
+          .then((data) => setWorldNews(data))
+          .catch((err) => console.error('Failed to load news:', err));
+      }, []);
+
+    /*useEffect(()=> {
         const worldNews = async ()=> {
             const response = await fetch(apiUrl);
             try{
@@ -38,7 +47,7 @@ const WorldNews = ()=> {
         };
         worldNews();
 
-    },[]);
+    },[]);*/
 
     const articles = worldNews?.articles?.slice(0,6) || [];
 

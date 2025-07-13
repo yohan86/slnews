@@ -13,8 +13,6 @@ interface props{
 const GridPostsList = ((props:props) => {
     const {categoryRefs, categoryName, category, posts} = props;
     const safePosts = posts || [];
-    console.log("grid", safePosts);
-
 return (
     <>
         { safePosts.length > 0 && (
