@@ -14,7 +14,11 @@ export default defineConfig(({mode}) => {
     base: env.VITE_BASE_PATH || '/',
     server: {
       proxy: {
-        '/api': 'http://localhost:5000',
+        '/api': {
+          target: 'https://slnews-production.up.railway.app', // Your Railway backend
+          changeOrigin: true,
+          secure: true,
+        },
       },
     },
   };
