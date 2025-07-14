@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors({
-    origin: 'https://slnewsonline.lk'
+    origin: '*'
 }));
 
 const PORT = process.env.PORT || 5000;
@@ -20,6 +20,7 @@ app.get("/api/worldNews", async (req,res) => {
                 apiKey:NEWS_API_KEY,
             }
         });
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.json(response.data);
     }catch(error){
         res.status(500).json({error: "Failed to fetch news"});
