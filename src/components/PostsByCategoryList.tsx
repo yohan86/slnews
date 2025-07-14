@@ -149,7 +149,6 @@ const PostsByCategoryList = () => {
                         posts={posts["latestnews"]?.posts}
                     />
                     <div className="w-[95%] m-auto"><a href="https://www.youtube.com/@LineTvLK" target="_blank"><img src="./images/channels4_banner.jpg" /></a></div>
-                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
                     <TwocolsPostsImages
                     // categoryRefs={categoryRefs} 
                     // categoryName="Two Columns" 
@@ -194,17 +193,17 @@ const PostsByCategoryList = () => {
                 </div>
             </div>
             </div>
-
+            <div className="main-wrapper w-[95%] md:w-[98%] lg:max-w-[1600px] m-auto p-2">
                
-                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
-                    <GridPostsList  
-                        categoryRefs={categoryRefs} 
-                        categoryName="Events" 
-                        category="events" 
-                        posts={posts["events"]?.posts} 
-                    />
-                    <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
-
+                <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
+                <GridPostsList  
+                    categoryRefs={categoryRefs} 
+                    categoryName="Events" 
+                    category="events" 
+                    posts={posts["events"]?.posts} 
+                />
+                <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
+            </div>
 
         </>
     )

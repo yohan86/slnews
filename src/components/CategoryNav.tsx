@@ -24,7 +24,7 @@ const CategoryNav = ((props:props) => {
                         <li 
                             key={categoryslug.slug}
                             onClick={()=> handleCategoryClick(categoryslug.slug)}
-                            className={`${categoryslug.slug} pl-3 pr-3 pb-1 ${(activeCat === categoryslug.slug)? 'active bg-white text-black font-medium rounded-full shadow-[1px_1px_3px_2px_#292754]':'cursor-pointer'}`}
+                            className={`${categoryslug.slug} pl-3 pr-3 pb-1 cursor-pointer`}
                         >{categoryslug.name}</li>
                     )
                 })}

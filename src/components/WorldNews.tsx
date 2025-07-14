@@ -19,9 +19,10 @@ const WorldNews = ()=> {
         const formatDate = format(newsDate, "MMMM dd, yyyy");
         return formatDate;
     };
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
     useEffect(() => {
-        fetch('https://slnews-production.up.railway.app/api/worldNews')
+        fetch(`${API_BASE_URL}/api/worldnews`)
           .then((res) =>{
             if(!res.ok){
                 throw new Error(`https error:${res.status}`);
@@ -69,8 +70,8 @@ const WorldNews = ()=> {
                 }}
             >
             {articles.map((news, index)=>(
-                <SwiperSlide className="pb-10">
-                <div key={index} className="text-white">
+                <SwiperSlide key={index}  className="pb-10">
+                <div className="text-white">
                     {news.urlToImage && (
                         <div className="w-[285px] h-[135px] overflow-hidden md:w-[90%] md:h-[215px]">
                             <img src={news.urlToImage} className="object-center"/>

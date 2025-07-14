@@ -38,11 +38,11 @@ return (
                 return (
                     <>
                     
-                    <div className="flex flex-row news-cols-card w-full  mb-[10px] md:mb-[20px] ">
+                    <div className="flex flex-col xl:flex-row news-cols-card w-full  mb-[10px] md:mb-[20px] ">
                         {fields.postImage?.[0]?.fields?.file?.url && (
              
-                        <a href={`/news/${slugOrId}`} className="md:w-1/2" title="Read More">
-                            <div className="w-[135px] min-w-[135px] h-[85px]  md:w-full  lg:h-[145px]" style={{
+                        <a href={`/news/${slugOrId}`} className="w-full xl:w-1/2" title="Read More">
+                            <div className="w-[135px] min-w-[135px] h-[85px]  md:w-full md:h-[150px] lg:h-[145px]" style={{
                             backgroundImage:`url(${fields.postImage?.[0]?.fields?.file?.url})`,
                             backgroundSize: "cover",
                             backgroundPosition:"center"
@@ -50,7 +50,7 @@ return (
                             </div>
                         </a>
                         )}
-                        <div className="item-intro-wrapper p-2 pt-0 md:w-1/2 md:pt-2">
+                        <div className="item-intro-wrapper p-2 pt-0 w-full xl:w-1/2 md:pt-2">
                             <a href={`${import.meta.env.BASE_URL}news/${slugOrId}`} title="Read More">
                                 <h3 className={`!text-[13px] lg:!text-[14px] ${textColor}`}>{fields.title}</h3>
                                 <span className={`mb-[10px] ${linkColor}`}>Read more &gt;&gt;</span></a>

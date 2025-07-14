@@ -118,7 +118,6 @@ ul,p{
 .weather-blk h2{
 	font-weight: bold;
 	margin-bottom:10px;
-	font-size: 25px;
 	color: transparent;
 	background: linear-gradient(90deg, #333, #d6d3c1, #333, #b7b5a8, #333);
 	background-size: 200% auto;
@@ -197,6 +196,9 @@ ul,p{
 @media (min-width: 768px) {
     html {
       font-size: 14px; /* Font size for medium screens */
+    }
+    h2{
+        font-size:18px;
     }
     h3{
         font-size:14px;

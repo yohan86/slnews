@@ -33,7 +33,7 @@ return (
             
 
                 return (
-                    <div key={index} className="news-card flex md:block w-full md:w-[180px] lg:w-[225px] xl:w-[250px] mb-[10px] md:mb-[20px]">
+                    <div key={index} className="news-card flex md:block w-full md:w-[180px] lg:w-[200px] xl:w-[250px] mb-[10px] md:mb-[20px]">
                         {fields.postImage?.[0]?.fields?.file?.url && (
                         <a href={`/news/${slugOrId}`}  title="Read More">
                             <div className="w-[135px] min-w-[135px] md:w-full h-[85px] lg:h-[125px]" style={{
