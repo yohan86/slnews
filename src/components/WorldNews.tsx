@@ -21,7 +21,7 @@ const WorldNews = ()=> {
     };
 
     useEffect(() => {
-        fetch('/api/worldNews')
+        fetch('https://slnews-production.up.railway.app/api/worldNews')
           .then((res) =>{
             if(!res.ok){
                 throw new Error(`https error:${res.status}`);

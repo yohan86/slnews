@@ -2,11 +2,11 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
-const PORT = 5000;
 
 app.use(cors());
 
-const NEWS_API_KEY = "9108cf15ac524d778f909aadfdd3e0dd";
+const PORT = process.env.PORT || 5000;
+const NEWS_API_KEY = process.env.NEWS_API_KEY || '9108cf15ac524d778f909aadfdd3e0dd';
 
 app.get("/api/worldNews", async (req,res) => {
     try{
