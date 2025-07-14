@@ -1,6 +1,5 @@
 import {useEffect, useState, useRef} from "react";
 import {getAllPosts} from "../services/contentful";
-import backToTopIcon from "../assets/back-to-top.png";
 import CategoryNav from "./CategoryNav";
 import GridPostsList from "./GridPostsList";
 import TwocolsPostsImages from "./TwocolsPostsImges";
@@ -207,22 +206,6 @@ const PostsByCategoryList = () => {
                     <div className="flex banner  w-full h-[100px] bg-green-200 mb-[50px] items-stretch justify-center"><div className="self-center">Advertiesment</div></div>
 
 
-            <button 
-                onClick={() => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }}
-                style={{
-                    backgroundImage:`url(${backToTopIcon})`,
-                    backgroundSize:"62px 64px",
-                    backgroundRepeat:"no-repeat",
-                }}
-                className="w-[70px] h-[110px] cursor-pointer"
-            >
-            
-            </button>
         </>
     )
 
