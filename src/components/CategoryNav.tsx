@@ -9,7 +9,7 @@ interface props{
 
 const CategoryNav = ((props:props) => {
 
-    const {categories, activeCat, handleCategoryClick, categoryWrapperRefs, catWrapperClass } = props;
+    const {categories, handleCategoryClick, categoryWrapperRefs, catWrapperClass } = props;
 
     return (
         <>
